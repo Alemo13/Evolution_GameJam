@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool canJump = true;
     public float jumpMultiplier = 1f;
+    private bool isJumping;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -52,23 +53,28 @@ public class PlayerMovement : MonoBehaviour
         SpeedController();
 
         if (isGrounded)
+        {
             rb.drag = groundDrag;
+            
+        }
         else
             rb.drag = 0;
     }
     private void FixedUpdate()
     {
         MovePlayer();
+        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+        anim.SetFloat("yVelocity", rb.velocity.y);
     }
     private void Inputs()
     {
         //Movement
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
+        verticalInput = Input.GetAxisRaw("Vertical"); 
         //Jump
         if (Input.GetKey(jumpKey) && isGrounded && canJump)
         {
+            anim.SetBool("IsJumping", true);
             canJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
@@ -88,12 +94,15 @@ public class PlayerMovement : MonoBehaviour
 
             // In Ground
             if (isGrounded)
-                rb.AddForce(moveDir.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
+            {
+                rb.AddForce(moveDir.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);             
+            }
             // In Air
             else if (!isGrounded)
+            {
                 rb.AddForce(moveDir.normalized * moveSpeed * speedMultiplier * 10f * airMultiplier, ForceMode.Force);
-        }
-        
+            }
+        }   
     }
 
     private void SpeedController()
@@ -112,13 +121,16 @@ public class PlayerMovement : MonoBehaviour
         // Reset Y Velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce * jumpMultiplier, ForceMode.Impulse);
-        anim.SetTrigger("Jump");
 
     }
 
     private void ResetJump()
     {
         canJump = true;
+        if (rb.velocity.y <= 0f && isGrounded)
+        {
+            anim.SetBool("IsJumping", false);
+        }
     }
 
     public void SetSpeedMultiplier (float newSpeedMultiplier)
