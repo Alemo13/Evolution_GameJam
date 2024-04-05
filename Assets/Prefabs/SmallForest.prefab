@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6920688558510916863}
   - component: {fileID: 8229861721700247744}
+  - component: {fileID: 8102433890233077475}
   m_Layer: 0
   m_Name: SmallForest
   m_TagString: Untagged
@@ -48,8 +49,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.3, z: 2}
-  m_Center: {x: 0, y: 0.7, z: -0.5}
+  m_Size: {x: 3, y: 1.3, z: 0.8}
+  m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!65 &8102433890233077475
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920688558510916862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7, y: 1.3, z: 1}
+  m_Center: {x: 0.65, y: 0.7, z: -0.9}
 --- !u!1001 &6920688558338104505
 PrefabInstance:
   m_ObjectHideFlags: 0
