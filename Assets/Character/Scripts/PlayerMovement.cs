@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
         anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
-        anim.SetFloat("yVelocity", rb.velocity.y);
+        anim.SetFloat("yVelocity", Mathf.Clamp(rb.velocity.y, -1, 1));
     }
     private void Inputs()
     {
@@ -75,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(jumpKey) && isGrounded && canJump)
         {
             anim.SetBool("IsJumping", true);
+            anim.SetBool("CanMove", false);
+
             canJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
@@ -127,10 +129,8 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         canJump = true;
-        if (rb.velocity.y <= 0f && isGrounded)
-        {
-            anim.SetBool("IsJumping", false);
-        }
+        anim.SetBool("IsJumping", false);
+        anim.SetBool("CanMove", true);
     }
     public void SetSpeedMultiplier (float newSpeedMultiplier)
     {
