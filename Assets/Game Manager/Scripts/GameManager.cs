@@ -7,14 +7,18 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [Header("Scene Loading")]
-    [SerializeField] private Animator _loadingScreenAnimator;
+    [SerializeField] private Animator loadingScreenAnimator;
+
+    private int score = 0;
+    private int playerEvolution = 0;
+    private float timeRemaining;
+    private GameObject player;
+    private EvolutionHandler evolutionHandler;
+    private PlayerMovement playerMovement;
 
     public static GameManager Instance;
 
-    private int _currentLevel;
-    public int CurrentLevel => _currentLevel;
-
-    public int score;
+    public float gampleyTime;
 
     private void Awake()
     {
@@ -29,27 +33,99 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int scoreValue)
     {
+        score += scoreValue;
+        
+        //Update ui score
 
+        if(playerEvolution != 0 && score < 50)
+        {
+            playerEvolution = 0;
+            evolutionHandler.SetEvolution(0);
+            //Play evolution Sound
+        }
+        else if (playerEvolution != 1 && (50 < score && score < 100))
+        {
+            playerEvolution = 1;
+            evolutionHandler.SetEvolution(1);
+            //Play evolution Sound
+        }
+        else if (playerEvolution != 2 && (100 < score && score < 150))
+        {
+            playerEvolution = 2;
+            evolutionHandler.SetEvolution(2);
+            //Play evolution Sound
+        }
+        else if (playerEvolution != 3 && (150 < score && score < 200))
+        {
+            playerEvolution = 3;
+            evolutionHandler.SetEvolution(3);
+            //Play evolution Sound
+        }
+    }
+
+    public void InitializeGame()
+    {
+        StopAllCoroutines();
+
+        score = 0;
+        playerEvolution = 0;
+        player = GameObject.Find("Player");
+        playerMovement = player.GetComponent<PlayerMovement>();
+        evolutionHandler = player.GetComponent <EvolutionHandler>();
+
+        StartCoroutine(GameplayCountDown());
+    }
+
+    private IEnumerator GameplayCountDown()
+    {
+        timeRemaining = gampleyTime;
+        while (timeRemaining > 0)
+        {
+            yield return new WaitForSeconds(1.0f);
+            timeRemaining--;
+            //Update ui timer
+        }
+
+        if(timeRemaining <= 0)
+        {
+            //Player lose
+        }
     }
 
     public void LoadGameScene(int buildIndex)
     {
-        score = 0;
-        _loadingScreenAnimator.SetBool("Show", true);
-        Slider progressSlider = _loadingScreenAnimator.GetComponentInChildren<Slider>();
-        progressSlider.value = 0.0f;
-        StartCoroutine(LoadingBar(progressSlider, buildIndex));
+        StartCoroutine(LoadLevelCoroutine(buildIndex));
     }
 
-    private IEnumerator LoadingBar(Slider slider, int buildIndex)
+    private IEnumerator LoadLevelCoroutine(int buildIndex)
     {
-        yield return new WaitForSeconds(0.5f);
-        slider.value += Random.Range(0.1f, 0.4f);
-        if (slider.value < 0.9f) StartCoroutine(LoadingBar(slider, buildIndex));
-        else
+        loadingScreenAnimator.SetTrigger("End");
+        yield return new WaitForSecondsRealtime(1.0f);
+        SceneManager.LoadSceneAsync(buildIndex);
+        loadingScreenAnimator.SetTrigger("Start");
+        if (buildIndex == 1)
         {
-            SceneManager.LoadScene(buildIndex);
-            _loadingScreenAnimator.SetBool("Show", false);
+            GameManager.Instance.InitializeGame();
         }
+    }
+
+    public void GamePause()
+    {
+
+    }
+
+    public void GameResume()
+    {
+
+    }
+
+    public void GameWin()
+    {
+
+    }
+
+    public void GameLose()
+    {
+
     }
 }
