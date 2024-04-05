@@ -31,11 +31,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     Rigidbody rb;
     public Transform cam;
+    Animator anim;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        anim = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -103,12 +106,14 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
-
     private void Jump()
     {
+        AudioManager.Instance.Play("SFX_Jump");
         // Reset Y Velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce * jumpMultiplier, ForceMode.Impulse);
+        anim.SetTrigger("Jump");
+
     }
 
     private void ResetJump()
