@@ -29,12 +29,20 @@ public class CoinSpawner : MonoBehaviour
     Vector3 GetRandomPosition()
     {
         Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
-        return new Vector3(randomCircle.x, 0f, randomCircle.y) + transform.position;
+        Vector3 spawnPosition = new Vector3(randomCircle.x, 0f, randomCircle.y) + transform.position;
+
+        // Clamp the spawn position if it exceeds the limit
+        float limit = 9f;
+        spawnPosition.x = Mathf.Clamp(spawnPosition.x, -limit, limit);
+        spawnPosition.z = Mathf.Clamp(spawnPosition.z, -limit, limit);
+
+        return spawnPosition;
     }
+
 
     bool IsPositionOccupied(Vector3 position)
     {
-        Collider[] colliders = Physics.OverlapSphere(position, 1f, obstacleLayer); // Adjust radius as needed
+        Collider[] colliders = Physics.OverlapSphere(position, 0.005f, obstacleLayer); // Adjust radius as needed
         return colliders.Length > 0;
     }
 }
