@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
         isPlaying = true;
 
-        Debug.Log("si esta jugando? " + isPlaying);
+        //Debug.Log("si esta jugando? " + isPlaying);
 
         score = 0;
         playerEvolution = 0;
@@ -127,9 +127,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.3f);
         SceneManager.LoadSceneAsync(buildIndex);
         //loadingScreenAnimator.SetTrigger("Start");
+
+        ResumeTime();
+
         if (buildIndex == 1)
         {
             yield return new WaitForSeconds(0.3f);
+            Debug.Log("");
             GameManager.Instance.InitializeGame();
         }
     }
@@ -150,11 +154,16 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0.0f;
             }
 
-            Debug.Log("Si entro? " + isPause);
+            //Debug.Log("Si entro? " + isPause);
 
             uiManager.PauseGame(isPause);
             playerMovement.PausePlayerMovement(isPause);
         }
+    }
+
+    public void ResumeTime()
+    {
+        Time.timeScale = 1.0f;
     }
 
     public void GameWin()
