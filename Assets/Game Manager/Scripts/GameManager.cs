@@ -63,13 +63,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Inicialice")]
     public void InitializeGame()
     {
         StopAllCoroutines();
 
         score = 0;
         playerEvolution = 0;
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Slime");
         playerMovement = player.GetComponent<PlayerMovement>();
         evolutionHandler = player.GetComponent <EvolutionHandler>();
 
