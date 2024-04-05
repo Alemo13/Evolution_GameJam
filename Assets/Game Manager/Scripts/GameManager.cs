@@ -71,8 +71,13 @@ public class GameManager : MonoBehaviour
         score = 0;
         playerEvolution = 0;
         player = GameObject.Find("Slime");
-        playerMovement = player.GetComponent<PlayerMovement>();
-        evolutionHandler = player.GetComponent <EvolutionHandler>();
+
+        if (player != null)
+        {
+            playerMovement = player.GetComponent<PlayerMovement>();
+            evolutionHandler = player.GetComponent<EvolutionHandler>();
+        }
+        else { Debug.Log("Player not found"); }
 
         StartCoroutine(GameplayCountDown());
     }
@@ -82,7 +87,7 @@ public class GameManager : MonoBehaviour
         timeRemaining = gampleyTime;
         while (timeRemaining > 0)
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.2f);
             timeRemaining--;
             //Update ui timer
         }
@@ -100,12 +105,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LoadLevelCoroutine(int buildIndex)
     {
-        loadingScreenAnimator.SetTrigger("End");
-        yield return new WaitForSecondsRealtime(1.0f);
+        //loadingScreenAnimator.SetTrigger("End");
+        yield return new WaitForSecondsRealtime(0.3f);
         SceneManager.LoadSceneAsync(buildIndex);
-        loadingScreenAnimator.SetTrigger("Start");
+        //loadingScreenAnimator.SetTrigger("Start");
         if (buildIndex == 1)
         {
+            yield return new WaitForSeconds(0.3f);
             GameManager.Instance.InitializeGame();
         }
     }
