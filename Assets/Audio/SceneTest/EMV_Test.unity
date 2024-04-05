@@ -1029,6 +1029,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreenCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8444650150885883043, guid: bd7048c9e1eea5240a7de6e4fd0b5f2e, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8444650150885883070, guid: bd7048c9e1eea5240a7de6e4fd0b5f2e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
