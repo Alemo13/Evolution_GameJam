@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 953653811617030635}
   - component: {fileID: 1947879679}
   - component: {fileID: 1947879678}
+  - component: {fileID: 8101190015479325229}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Player
@@ -191,7 +192,7 @@ MonoBehaviour:
   groundCheck: {fileID: 7645565816424969781}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   groundDrag: 5
   cam: {fileID: 0}
 --- !u!95 &1947879679
@@ -238,6 +239,18 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5b87a972518a3154aa254612d431fa98, type: 2}
   slimeFace: {fileID: 3037368638244363569}
   evolutionStage: 0
+--- !u!114 &8101190015479325229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988487597917696530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4ded1391f0151409f159defe80c69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4101467893812952377
 GameObject:
   m_ObjectHideFlags: 0
