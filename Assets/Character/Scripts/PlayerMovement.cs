@@ -132,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("IsJumping", false);
         }
     }
-
     public void SetSpeedMultiplier (float newSpeedMultiplier)
     {
         speedMultiplier = newSpeedMultiplier;
@@ -140,5 +139,28 @@ public class PlayerMovement : MonoBehaviour
     public void SetJumpMultiplier(float newJumpMultiplier)
     {
         jumpMultiplier = newJumpMultiplier;
+    }
+    public void StopPlayer()
+    {
+        this.enabled = false;
+    }
+    public void StartPlayer()
+    { 
+        this.enabled = true; 
+    }
+    public void PausePlayerMovement(bool isPause)
+    {
+        this.enabled = !isPause;
+
+        if (!isPause)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else if (isPause)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 }
