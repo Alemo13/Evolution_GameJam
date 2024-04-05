@@ -16,9 +16,14 @@ public class GameManager : MonoBehaviour
     private EvolutionHandler evolutionHandler;
     private PlayerMovement playerMovement;
 
+    private UIManager uiManager;
+
     public static GameManager Instance;
 
     public float gampleyTime;
+
+    private bool isPause;
+    private bool isPlaying = false;
 
     private void Awake()
     {
@@ -29,13 +34,19 @@ public class GameManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
+    }
+
+    private void Update()
+    {
+        PauseGame();
     }
 
     public void UpdateScore(int scoreValue)
     {
         score += scoreValue;
         
-        //Update ui score
+        uiManager.UpdateCoinCount(score);
 
         if(playerEvolution != 0 && score < 50)
         {
@@ -68,6 +79,10 @@ public class GameManager : MonoBehaviour
     {
         StopAllCoroutines();
 
+        isPlaying = true;
+
+        Debug.Log("si esta jugando? " + isPlaying);
+
         score = 0;
         playerEvolution = 0;
         player = GameObject.Find("Slime");
@@ -79,6 +94,9 @@ public class GameManager : MonoBehaviour
         }
         else { Debug.Log("Player not found"); }
 
+        uiManager = FindAnyObjectByType<UIManager>();
+        if (uiManager == null) Debug.Log("No se encontro el UI manager rey");
+
         StartCoroutine(GameplayCountDown());
     }
 
@@ -87,9 +105,9 @@ public class GameManager : MonoBehaviour
         timeRemaining = gampleyTime;
         while (timeRemaining > 0)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1.0f);
             timeRemaining--;
-            //Update ui timer
+            uiManager.UpdateTimer(timeRemaining);
         }
 
         if(timeRemaining <= 0)
@@ -116,23 +134,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GamePause()
+    public void PauseGame()
     {
+        if (isPlaying && Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPause)
+            {
+                isPause = false;
+                Time.timeScale = 1.0f;
 
-    }
+            }
+            else 
+            { 
+                isPause = true;
+                Time.timeScale = 0.0f;
+            }
 
-    public void GameResume()
-    {
+            Debug.Log("Si entro? " + isPause);
 
+            uiManager.PauseGame(isPause);
+            playerMovement.PausePlayerMovement(isPause);
+        }
     }
 
     public void GameWin()
     {
-
+        isPlaying = false;
     }
 
     public void GameLose()
     {
-
+        isPlaying = false;
     }
 }
