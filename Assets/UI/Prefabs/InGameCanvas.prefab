@@ -1930,6 +1930,7 @@ MonoBehaviour:
   coinText: {fileID: 5822138778534816015}
   timerText: {fileID: 4651503836003405618}
   pauseMenu: {fileID: 296118682218491374}
+  pauseMenuBox: {fileID: 1941317862478724850}
   optiosMenu: {fileID: 7673919605632775026}
 --- !u!114 &1338784817
 MonoBehaviour:
