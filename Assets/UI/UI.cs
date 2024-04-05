@@ -20,7 +20,7 @@ public class UI : MonoBehaviour
     // Boton START
     public void StartGame() 
     {
-        SceneManager.LoadScene("Level 1"); // Cargar el primer nivel desde el menú de inicio
+        SceneManager.LoadScene("Map"); // Cargar el primer nivel desde el menú de inicio
         mainMenu.SetActive(false); // Ocultar menu principal
         inGameUI.SetActive(true); // Se muestra la UI del juego
 
@@ -46,7 +46,7 @@ public class UI : MonoBehaviour
      // Boton BACK del menú de opciones
     public void OptionsBackButton()
     {
-        if(gameStarted == false)
+        if(gameStarted == false) // Si ya inicio
         {
             optionsMenu.SetActive(false);
             mainMenuBox.SetActive(true);
@@ -75,7 +75,7 @@ public class UI : MonoBehaviour
 
     public void QuitGame()
     {
-        
+        SceneManager.LoadScene("Main Menu"); // Cargar la escena de menú principal
     }
 
 }
