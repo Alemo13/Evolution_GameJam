@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
 
         if(timeRemaining <= 0)
         {
-            //Player lose
+            GameLose();
         }
     }
 
@@ -166,13 +166,22 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    [ContextMenu("Gano mi rey")]
     public void GameWin()
     {
         isPlaying = false;
+        playerMovement.StopPlayer();
+        uiManager.WinGame(score);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void GameLose()
     {
         isPlaying = false;
+        playerMovement.StopPlayer();
+        uiManager.GameOver(score);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
