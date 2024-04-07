@@ -59,3 +59,51 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: SFX_GoodCoin
+    clip: {fileID: 8300000, guid: d3cbd1968c3bcd649baede152f6c2c5e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_BadCoin
+    clip: {fileID: 8300000, guid: 47218e6b59a60ff44a9362ecf340e15f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Spike
+    clip: {fileID: 8300000, guid: 4f5453069fbb72d4c9d26b5697c592f4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_PowerUp
+    clip: {fileID: 8300000, guid: 55c31e65aaaddd6428a92c1ad760a88b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Win
+    clip: {fileID: 8300000, guid: 80ae98124e048294f94a00b53852a695, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Lose
+    clip: {fileID: 8300000, guid: 7ea9519d5e383aa4b951bc2481677c43, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Click
+    clip: {fileID: 8300000, guid: 5afd615c0fa14eb4bb3a502f2447ca3f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Evolution
+    clip: {fileID: 8300000, guid: 998191831c86638468ea1999201c8b3c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

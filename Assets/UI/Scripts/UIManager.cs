@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text winCoinText;
     [SerializeField] private TMP_Text loseCoinText;
+    [SerializeField] private TMP_Text introText;
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject pauseMenuBox;
@@ -37,12 +38,23 @@ public class UIManager : MonoBehaviour
     public void WinGame(int score)
     {
         winGameMenu.SetActive(true);
-        winCoinText.text = score.ToString();
+        winCoinText.text = "SCORE: " + score.ToString();
     }
 
     public void GameOver(int score)
     {
         loseGameMenu.SetActive(true);
-        loseCoinText.text = score.ToString();
+        loseCoinText.text = "SCORE: " + score.ToString();
+    }
+
+    public void StartIntro()
+    {
+        StartCoroutine(IntroRoutine());
+    }
+
+    private IEnumerator IntroRoutine()
+    {
+        yield return new WaitForSeconds(10.0f);
+        introText.enabled = false;
     }
 }

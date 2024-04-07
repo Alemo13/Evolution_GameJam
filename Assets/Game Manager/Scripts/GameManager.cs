@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
         if (uiManager == null) Debug.Log("No se encontro el UI manager rey");
 
         StartCoroutine(GameplayCountDown());
+        uiManager.StartIntro();
     }
 
     private IEnumerator GameplayCountDown()
@@ -123,17 +124,17 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LoadLevelCoroutine(int buildIndex)
     {
-        //loadingScreenAnimator.SetTrigger("End");
-        yield return new WaitForSecondsRealtime(0.3f);
+        loadingScreenAnimator.SetTrigger("End");
+        yield return new WaitForSecondsRealtime(0.5f);
         SceneManager.LoadSceneAsync(buildIndex);
-        //loadingScreenAnimator.SetTrigger("Start");
+        loadingScreenAnimator.SetTrigger("Start");
 
         ResumeTime();
 
         if (buildIndex == 1)
         {
-            yield return new WaitForSeconds(0.3f);
-            Debug.Log("");
+            yield return new WaitForSeconds(0.5f);
+            //Debug.Log("");
             GameManager.Instance.InitializeGame();
         }
     }
@@ -171,6 +172,7 @@ public class GameManager : MonoBehaviour
     {
         isPlaying = false;
         playerMovement.StopPlayer();
+        AudioManager.Instance.Play("SFX_Win");
         uiManager.WinGame(score);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -180,6 +182,7 @@ public class GameManager : MonoBehaviour
     {
         isPlaying = false;
         playerMovement.StopPlayer();
+        AudioManager.Instance.Play("SFX_Lose");
         uiManager.GameOver(score);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

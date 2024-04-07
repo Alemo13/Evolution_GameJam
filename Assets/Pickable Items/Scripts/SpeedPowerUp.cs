@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedPowerUp : MonoBehaviour, IPickable
@@ -11,17 +10,22 @@ public class SpeedPowerUp : MonoBehaviour, IPickable
     void Start()
     {
         playerMovement = FindAnyObjectByType<PlayerMovement>();
+        //if (playerMovement == null) Debug.Log("Socio no lo encontro");
     }
 
     public void TakeIt()
     {
+        AudioManager.Instance.Play("SFX_PowerUp");
         StartCoroutine(SpeedPowerUP());
+        gameObject.SetActive(false);
     }
 
     private IEnumerator SpeedPowerUP()
     {
         float speedBase = playerMovement.speedMultiplier;
         playerMovement.speedMultiplier *= 2.0f;
+
+        //Debug.Log("Si entro " + playerMovement.speedMultiplier);
 
         yield return new WaitForSeconds(powerUpTime);
 

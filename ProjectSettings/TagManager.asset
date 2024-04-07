@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Pickable
   - Price
+  - GameWin
+  - Spikes
   layers:
   - Default
   - TransparentFX

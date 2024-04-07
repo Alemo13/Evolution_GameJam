@@ -145,6 +145,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 8266036176339264443}
+        m_TargetAssemblyTypeName: AudioHelper, Assembly-CSharp
+        m_MethodName: PlayClip
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFX_Click
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &8266036174982805135
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,10 +318,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 8266036174982805134}
   m_HandleRect: {fileID: 8266036176132304620}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -60
+  m_MaxValue: 15
   m_WholeNumbers: 0
-  m_Value: 0.8
+  m_Value: -10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -459,6 +471,18 @@ MonoBehaviour:
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8266036176339264443}
+        m_TargetAssemblyTypeName: AudioHelper, Assembly-CSharp
+        m_MethodName: PlayClip
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFX_Click
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8266036175186696270
@@ -698,10 +722,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 8266036175719415505}
   m_HandleRect: {fileID: 8266036176639501028}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -60
+  m_MaxValue: 15
   m_WholeNumbers: 0
-  m_Value: 0.8
+  m_Value: -10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -772,6 +796,7 @@ GameObject:
   - component: {fileID: 8266036175421332670}
   - component: {fileID: 8266036175421332671}
   - component: {fileID: 8266036175421332659}
+  - component: {fileID: 8266036176339264443}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -873,6 +898,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c40136f103fc0f94e87609bf1a7c0fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8266036176339264443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266036175421332668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96d4ee2daf7bd24d83e2567605574a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8266036175563184743
@@ -1700,5 +1737,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8266036176339264443}
+        m_TargetAssemblyTypeName: AudioHelper, Assembly-CSharp
+        m_MethodName: PlayClip
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFX_Click
           m_BoolArgument: 0
         m_CallState: 2
