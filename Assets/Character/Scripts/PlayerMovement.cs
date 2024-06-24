@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool canJump = true;
     public float jumpMultiplier = 1f;
-    private bool isJumping;
+    private bool isJumping = false;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -55,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             rb.drag = groundDrag;
-            
         }
         else
             rb.drag = 0;
@@ -74,8 +73,8 @@ public class PlayerMovement : MonoBehaviour
         //Jump
         if (Input.GetKey(jumpKey) && isGrounded && canJump)
         {
-            anim.SetBool("IsJumping", true);
-            anim.SetBool("CanMove", false);
+            anim.SetBool("isJumping", true);
+            anim.SetBool("isWalking", false);
 
             canJump = false;
             Jump();
@@ -97,14 +96,21 @@ public class PlayerMovement : MonoBehaviour
             // In Ground
             if (isGrounded)
             {
-                rb.AddForce(moveDir.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);             
+                anim.SetBool("isJumping", false);
+                rb.AddForce(moveDir.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
+                anim.SetBool("isWalking", true);
             }
             // In Air
             else if (!isGrounded)
             {
                 rb.AddForce(moveDir.normalized * moveSpeed * speedMultiplier * 10f * airMultiplier, ForceMode.Force);
+                anim.SetBool("isWalking", false);
             }
-        }   
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
     }
 
     private void SpeedController()
@@ -129,8 +135,6 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         canJump = true;
-        anim.SetBool("IsJumping", false);
-        anim.SetBool("CanMove", true);
     }
     public void SetSpeedMultiplier (float newSpeedMultiplier)
     {

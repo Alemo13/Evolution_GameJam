@@ -45,8 +45,8 @@ public class EvolutionHandler : MonoBehaviour
                 }
                 else
                     Debug.Log("no se cambio la cara");
-                playerMovement.SetJumpMultiplier(1.3f);
-                playerMovement.SetSpeedMultiplier(1.2f);
+                playerMovement.SetJumpMultiplier(1.4f);
+                playerMovement.SetSpeedMultiplier(1.4f);
                 break;
             case 2:
                 transform.localScale = new Vector3(3, 3, 3);
@@ -56,8 +56,8 @@ public class EvolutionHandler : MonoBehaviour
                 }
                 hatsList[1].SetActive(true);
                 slimeFace.materials[1] = face[2];
-                playerMovement.SetJumpMultiplier(1.45f);
-                playerMovement.SetSpeedMultiplier(1.2f);
+                playerMovement.SetJumpMultiplier(1.8f);
+                playerMovement.SetSpeedMultiplier(1.6f);
                 break;
             case 3:
                 transform.localScale = new Vector3(4, 4, 4);
@@ -67,8 +67,8 @@ public class EvolutionHandler : MonoBehaviour
                 }
                 hatsList[2].SetActive(true);
                 slimeFace.materials[1] = face[3];
-                playerMovement.SetJumpMultiplier(1.6f);
-                playerMovement.SetSpeedMultiplier(1.4f);
+                playerMovement.SetJumpMultiplier(2.5f);
+                playerMovement.SetSpeedMultiplier(1.8f);
                 break;
         }
 
